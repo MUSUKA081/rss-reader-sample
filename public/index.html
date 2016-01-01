@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>簡易RSSリーダ</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="js/vue.js" charset="utf-8"></script>
+    <script src="js/index.js" charset="utf-8"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <my-entry
+                v-for="entry in entries"
+                :title="entry.title"
+                :published-date="entry.publishedDate"
+                :link="entry.link"
+                :index="$index" />
+        </ul>
+    </div>
+    <template id="my-entry-template">
+        <li><article>
+            <time class="date" v-text="date"></time>
+            <a href="{{link}}">
+                <span class="title" v-text="title"></span>
+            </a>
+        </article></li>
+    </template>
+</body>
+</html>

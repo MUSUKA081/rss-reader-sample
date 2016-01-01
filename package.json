@@ -1,0 +1,16 @@
+{
+  "name": "vue-sample",
+  "version": "1.0.0",
+  "description": "#### 概要 vue.jsを利用したRSSリーダのサンプル 作っているもの自体にツッコミどころはたくさんありますが，vue.jsの使い方のレビューをしていただきたいです．",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "suzutomo",
+  "license": "ISC"
+}
