@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>簡易RSSリーダ</title>
+    <link rel="stylesheet" href="./style/style.css" media="screen" title="no title" charset="utf-8">
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="js/vue.js" charset="utf-8"></script>
     <script src="js/index.js" charset="utf-8"></script>
 </head>
 <body>
     <div id="app">
+        <my-reader :entries="entries" />
+    </div>
+
+    <!-- 記事リストのテンプレート -->
+    <template id="my-reader-template">
         <ul>
             <my-entry
                 v-for="entry in entries"
-                :title="entry.title"
-                :published-date="entry.publishedDate"
-                :link="entry.link"
-                :index="$index" />
+                :entry="entry"
+                :index="$index"
+                transition="expanded"
+                stagger="20" />
         </ul>
-    </div>
+    </template>
+
+    <!-- 各記事のテンプレート -->
     <template id="my-entry-template">
-        <li><article>
-            <time class="date" v-text="date"></time>
-            <a href="{{link}}">
-                <span class="title" v-text="title"></span>
-            </a>
-        </article></li>
+        <li>
+            <article>
+                <time class="date" v-text="date"></time>
+                <a href="{{entry.link}}">
+                    <span class="title" v-text="entry.title"></span>
+                </a>
+                <span v-if="new"> &lt;- New</span>
+            </article>
+        </li>
     </template>
 </body>
 </html>
