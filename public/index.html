@@ -9,7 +9,11 @@
     <script src="js/index.js" charset="utf-8"></script>
 </head>
 <body>
-    <div id="app">
+    <div id="whatsnew" class="rss-reader">
+        <my-reader :entries="entries" />
+    </div>
+
+    <div id="presentation" class="rss-reader">
         <my-reader :entries="entries" />
     </div>
 

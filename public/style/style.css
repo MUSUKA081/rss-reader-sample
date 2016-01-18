@@ -1,8 +1,8 @@
-#app article {
+.rss-reader article {
     font-size: small;
 }
 
-#app a:-webkit-any-link {
+.rss-reader a:-webkit-any-link {
     color: green;
 }
 

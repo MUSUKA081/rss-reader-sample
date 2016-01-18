@@ -2,9 +2,8 @@ google.load("feeds", "1");
 
 addEventListener('DOMContentLoaded', function(){
     /*RSSの一覧をリストで表示*/
-    getRSS('http://summer.ics.nitech.ac.jp/apps/news/rss/', function(data) {
-        showData(data);
-    });
+    makeComponent('#whatsnew', 'http://summer.ics.nitech.ac.jp/apps/news/tag/whats-new/rss/');
+    // makeComponent('#presentation', 'http://rss.rssad.jp/rss/mainichi/flash.rss');
 });
 
 /* Google Ajax APIを利用してRSS取得 */
@@ -24,9 +23,9 @@ function getRSS(url, callback) {
     google.setOnLoadCallback(initialize);
 }
 
+
 /* 取得したJSONをvue.jsで表示 */
-function showData(data) {
-    var entries = data.feed.entries;
+function makeComponent(el_id, url) {
 
     /* 各記事のコンポーネント */
     var Entry = Vue.extend({
@@ -44,7 +43,7 @@ function showData(data) {
                 var date = new Date(this.entry.publishedDate);
                 var now = new Date();
                 var diff = new Date(now - date);
-                return diff.getUTCMonth() < 1;
+                return diff.getUTCFullYear() === 1970 && diff.getUTCMonth() < 1;
             }
         }
     });
@@ -59,16 +58,23 @@ function showData(data) {
     });
 
     new Vue({
-        el: '#app',
-        data: {
-            entries: []
+        el: el_id,
+        data() {
+            return {
+                entries: []
+            };
         },
         components: {
             'my-reader': Reader
         },
         ready() {
-            entries.forEach(function(item) {
-                this.entries.push(item);
+            getRSS(url, function(data){
+                var entries = data.feed.entries;
+                if(entries) {
+                    entries.forEach(function(item) {
+                        this.entries.push(item);
+                    }.bind(this));
+                }
             }.bind(this));
         }
     });
