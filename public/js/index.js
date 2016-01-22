@@ -3,7 +3,7 @@ google.load("feeds", "1");
 addEventListener('DOMContentLoaded', function(){
     /*RSSの一覧をリストで表示*/
     makeComponent('#whatsnew', 'http://summer.ics.nitech.ac.jp/apps/news/tag/whats-new/rss/');
-    // makeComponent('#presentation', 'http://rss.rssad.jp/rss/mainichi/flash.rss');
+    makeComponent('#conf-schedule', 'http://summer.ics.nitech.ac.jp/apps/news/tag/conference/rss/');
 });
 
 /* Google Ajax APIを利用してRSS取得 */

@@ -1,5 +1,12 @@
+.rss-reader {
+    max-height: 200px;
+    overflow: auto;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.4) inset;
+}
+
 .rss-reader article {
     font-size: small;
+    text-align: left;
 }
 
 .rss-reader a:-webkit-any-link {
@@ -8,7 +15,6 @@
 
 .expanded-transition {
     transition: all .5s ease;
-    height: 25px;
 }
 
 .expanded-enter, .expand-leave {
