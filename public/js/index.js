@@ -39,6 +39,7 @@ function makeComponent(el_id, url) {
                     day: '2-digit'
                 });
             },
+            // 一ヶ月以内の記事にマーカーを付ける
             new: function() {
                 var date = new Date(this.entry.publishedDate);
                 var now = new Date();
