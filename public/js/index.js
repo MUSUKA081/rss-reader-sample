@@ -55,14 +55,15 @@ function makeComponent(el_id, url) {
         components: {
             'my-entry': Entry
         },
-        props: ['entries']
+        props: ['entries', 'loaded']
     });
 
     new Vue({
         el: el_id,
         data() {
             return {
-                entries: []
+                entries: [],
+                loaded: false
             };
         },
         components: {
@@ -71,6 +72,7 @@ function makeComponent(el_id, url) {
         ready() {
             getRSS(url, function(data){
                 var entries = data.feed.entries;
+                this.loaded = true;
                 if(entries) {
                     entries.forEach(function(item) {
                         this.entries.push(item);
